@@ -1,0 +1,11 @@
+node_modules/
+.svelte-kit/
+/build/
+.env
+.env.*
+!.env.example
+.vercel/
+.vercel
+
+# Local source archive; project files are tracked directly.
+sustainabilist-source.zip

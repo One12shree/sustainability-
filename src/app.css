@@ -1,36 +1,163 @@
 /* Original publication styles are served locally; these restore the saved grid without WordPress scripts. */
-#grid { position: relative; height: auto; display: flex; flex-wrap: wrap; }
-#grid > li { opacity: 1; position: relative; width: 33.333333%; box-sizing: border-box; animation: none; transform: none; }
-#grid.masonry { display: block; }
-#grid.masonry > li { position: absolute; opacity: 1; animation: none; transform: none; box-sizing: border-box; width: 33.333333%; }
-#grid > li > a > div, #grid > li > div { display: flow-root; }
-#grid img { height: auto; }
-#menu-toggle { cursor: pointer; }
-#menu { overflow-y: auto; }
-a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #82bd41; outline-offset: 3px; }
-.popup { top: 8vh; max-height: 84vh; overflow-y: auto; }
-.twitter-timeline { min-height: 40px; }
-@media (max-width: 900px) { #grid > li { width: 50%; } }
-@media (max-width: 600px) { #grid > li { width: 100%; } .fixed-tag { display: none; } }
+#grid {
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#grid > li {
+  opacity: 1;
+  position: relative;
+  width: 33.333333%;
+  box-sizing: border-box;
+  animation: none;
+  transform: none;
+}
+#grid.masonry {
+  display: block;
+}
+#grid.masonry > li {
+  position: absolute;
+  opacity: 1;
+  animation: none;
+  transform: none;
+  box-sizing: border-box;
+  width: 33.333333%;
+}
+#grid > li > a > div,
+#grid > li > div {
+  display: flow-root;
+}
+#grid img {
+  height: auto;
+}
+#menu-toggle {
+  cursor: pointer;
+}
+#menu {
+  overflow-y: auto;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #82bd41;
+  outline-offset: 3px;
+}
+.popup {
+  top: 8vh;
+  max-height: 84vh;
+  overflow-y: auto;
+}
+.twitter-timeline {
+  min-height: 40px;
+}
+@media (max-width: 900px) {
+  #grid > li {
+    width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  #grid > li {
+    width: 100%;
+  }
+  .fixed-tag {
+    display: none;
+  }
+}
 
-#menu .menu-label { display: block; text-align: left; line-height: 50px; font-size: 21px; font-weight: 400; color: #232629; border-top: 1px solid #eee; cursor: default; text-decoration: none; }
-#menu li:last-child .menu-label { border-bottom: 1px solid #eee; }
-.header-top .menu-label { cursor: default; text-decoration: none; }
-@media (max-width: 640px) { #menu .menu-label { line-height: 36px; font-size: 15px; } }
+#menu .menu-label {
+  display: block;
+  text-align: left;
+  line-height: 50px;
+  font-size: 21px;
+  font-weight: 400;
+  color: #232629;
+  border-top: 1px solid #eee;
+  cursor: default;
+  text-decoration: none;
+}
+#menu li:last-child .menu-label {
+  border-bottom: 1px solid #eee;
+}
+.header-top .menu-label {
+  cursor: default;
+  text-decoration: none;
+}
+@media (max-width: 640px) {
+  #menu .menu-label {
+    line-height: 36px;
+    font-size: 15px;
+  }
+}
 
 /* Keep the three header destinations visible and clickable across page styles. */
-.header-top .icon-sub { display: flex; align-items: flex-start; justify-content: space-evenly; gap: 10px; }
-.header-top .icon-sub > a { display: inline-flex; float: none; margin: 0; color: white; cursor: pointer; position: relative; z-index: 1; }
-.header-top .icon-sub .tooltip { display: flex; flex-direction: column; align-items: center; position: relative; opacity: 1; visibility: visible; margin: 0; border: 0; pointer-events: auto; }
-.header-top .icon-sub .tooltip img { width: 35px; height: 35px; margin: 0; display: block; }
-.header-top .icon-sub .tooltiptext { position: static !important; display: block; visibility: visible; opacity: 1; width: auto; margin: 5px 0 0; padding: 0; color: white; font-size: 14px; line-height: 18px !important; white-space: nowrap; }
+.header-top .icon-sub {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.header-top .icon-sub > a {
+  display: inline-flex;
+  float: none;
+  margin: 0;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.header-top .icon-sub .tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+  border: 0;
+  pointer-events: auto;
+}
+.header-top .icon-sub .tooltip img {
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  display: block;
+}
+.header-top .icon-sub .tooltiptext {
+  position: static !important;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  width: auto;
+  margin: 5px 0 0;
+  padding: 0;
+  color: white;
+  font-size: 14px;
+  line-height: 18px !important;
+  white-space: nowrap;
+}
 
 /* Reserve a dedicated lane for the hamburger button beside the header icons. */
-.header-top > .header-inr { box-sizing: border-box; padding-right: 76px; }
-#menu-toggle { right: 20px; width: 40px; height: 44px; }
+.header-top > .header-inr {
+  box-sizing: border-box;
+  padding-right: 76px;
+}
+#menu-toggle {
+  right: 20px;
+  width: 40px;
+  height: 44px;
+}
 @media (max-width: 640px) {
-  .header-top > .header-inr { padding-right: 58px; }
-  .header-top .icon-sub { gap: 8px; }
-  .header-top .icon-sub .tooltiptext { font-size: 13px; }
-  #menu-toggle { right: 12px; }
+  .header-top > .header-inr {
+    padding-right: 58px;
+  }
+  .header-top .icon-sub {
+    gap: 8px;
+  }
+  .header-top .icon-sub .tooltiptext {
+    font-size: 13px;
+  }
+  #menu-toggle {
+    right: 12px;
+  }
 }

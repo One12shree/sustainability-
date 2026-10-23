@@ -19,6 +19,8 @@ PAGES = {
     "green-economists-note": "https://thesustainabilist.ae/green-economists-note/",
     "media-kit": "https://thesustainabilist.ae/media-kit/",
     "editorial-calendar": "https://thesustainabilist.ae/editorial-calendar/",
+    "editorial-calendar-2019": "https://thesustainabilist.ae/editorial-calendar-2019/",
+    "editorial-calendar-2020": "https://thesustainabilist.ae/editorial-calendar-2020/",
     "trending-articles": "https://thesustainabilist.ae/trending-articles/",
     "themes": "https://thesustainabilist.ae/themes/",
     "partners": "https://thesustainabilist.ae/partners/",

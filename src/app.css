@@ -51,6 +51,30 @@ input:focus-visible {
 .twitter-timeline {
   min-height: 40px;
 }
+.asl_w_container {
+  position: relative;
+}
+.local-search-suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  z-index: 2147483647;
+  background: #fff;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 22%);
+}
+.local-search-suggestions a {
+  display: block;
+  padding: 11px 14px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.local-search-suggestions a:hover {
+  background: #f1f7ed;
+  color: #51c103;
+}
 @media (max-width: 900px) {
   #grid > li {
     width: 50%;

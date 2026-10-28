@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
   import initialHomepage from "$lib/homepage.json";
   export let homepage = initialHomepage;
   export let title = "The Sustainabilist";
@@ -30,7 +31,7 @@
     (html, [from, to]) => html.replaceAll(from, to),
     homepage.body,
   );
-  $: body = Object.entries(menuLinks).reduce(
+  $: menuBody = Object.entries(menuLinks).reduce(
     (html, [label, href]) =>
       html.replaceAll(
         `<span class="menu-label">${label}</span>`,
@@ -38,6 +39,12 @@
       ),
     ramadanBody,
   );
+  $: body = menuBody
+    .replaceAll('action="https://thesustainabilist.ae/"', 'action="/search/"')
+    .replaceAll('name="s"', 'name="q"')
+    .replaceAll('name="phrase"', 'name="q"')
+    .replaceAll("name='phrase'", "name='q'")
+    .replace(/action=(['"])#\1/g, 'action="/search/"');
 
   onMount(() => {
     const grid = document.querySelector<HTMLElement>("#grid");
@@ -114,12 +121,45 @@
         if (menu) menu.checked = false;
       }
     }
+    function input(event: Event) {
+      const field = event.target;
+      if (!(field instanceof HTMLInputElement) || !field.matches('[role="search"] input[type="search"]')) return;
+      const phrase = field.value.trim().toLocaleLowerCase();
+      document.querySelector(".local-search-suggestions")?.remove();
+      if (!phrase) return;
+
+      const choices = Array.from(document.querySelectorAll<HTMLAnchorElement>("a[href]"))
+        .map((link) => ({ title: link.textContent?.replace(/\s+/g, " ").trim() ?? "", href: link.getAttribute("href") ?? "" }))
+        .filter((link) => link.title && link.href.startsWith("/") && link.title.toLocaleLowerCase().includes(phrase))
+        .filter((link, index, links) => links.findIndex((item) => item.href === link.href) === index)
+        .slice(0, 4);
+      const suggestions = document.createElement("div");
+      suggestions.className = "local-search-suggestions";
+      if (choices.length) {
+        suggestions.innerHTML = choices
+          .map((choice) => `<a href="${choice.href}">${choice.title}</a>`)
+          .join("");
+      } else {
+        suggestions.innerHTML = `<a href="/search/?q=${encodeURIComponent(field.value)}">Search for “${field.value}”</a>`;
+      }
+      field.closest(".asl_w_container")?.append(suggestions);
+    }
     function submit(event: SubmitEvent) {
+      const form = event.target;
+      if (form instanceof HTMLFormElement && form.matches('[role="search"]')) {
+        event.preventDefault();
+        const data = new FormData(form);
+        const query = (data.get("q") ?? data.get("s") ?? data.get("phrase"))
+          ?.toString()
+          .trim();
+        goto(query ? `/search/?q=${encodeURIComponent(query)}` : "/search/");
+      }
       if (frontendOnly) event.preventDefault();
     }
     document.addEventListener("submit", submit);
     document.addEventListener("click", click);
     document.addEventListener("keydown", key);
+    document.addEventListener("input", input);
     layout();
     return () => {
       document.removeEventListener("submit", submit);
@@ -128,6 +168,7 @@
       window.removeEventListener("resize", schedule);
       document.removeEventListener("click", click);
       document.removeEventListener("keydown", key);
+      document.removeEventListener("input", input);
     };
   });
 </script>
